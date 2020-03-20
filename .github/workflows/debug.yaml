@@ -19,3 +19,15 @@ jobs:
 
     - name: list all binaries
       run: bash list-all-binaries.sh
+
+    - name: PHP 7.1
+      run: /usr/bin/php7.1 -v
+
+    - name: PHP 7.2
+      run: /usr/bin/php7.2 -v
+
+    - name: PHP 7.3
+      run: /usr/bin/php7.3 -v
+
+    - name: PHP 7.4
+      run: /usr/bin/php7.4 -v
