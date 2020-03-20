@@ -31,3 +31,6 @@ jobs:
 
     - name: PHP 7.4
       run: /usr/bin/php7.4 -v
+
+    - name: Install Symfony binary
+      run: curl -sS https://get.symfony.com/cli/installer | bash
