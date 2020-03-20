@@ -49,6 +49,9 @@ jobs:
     - name: What is current php?
       run: file `which php` && ls -al `which php`
 
+    - name: Use PHP 7.3
+      run: sudo update-alternatives --set php /usr/bin/php7.3 && php -v
+
     - name: MySQL version
       run: mysql --version
 
