@@ -46,6 +46,9 @@ jobs:
     - name: Current PHP?
       run: php -v && php -i
 
+    - name: What is current php?
+      run: file `which php` && ls -al `which php`
+
     - name: MySQL version
       run: mysql --version
 
