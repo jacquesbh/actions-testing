@@ -17,3 +17,8 @@ jobs:
     - name: Whoami?
       run: id
 
+    - name: list all binaries
+      run: |
+          for p in ${PATH//:/ }; \
+              do find $p -type f -executable; \
+          done;
