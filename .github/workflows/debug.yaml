@@ -33,4 +33,6 @@ jobs:
       run: /usr/bin/php7.4 -v
 
     - name: Install Symfony binary
-      run: curl -sS https://get.symfony.com/cli/installer | bash
+      run: |
+          curl -sS https://get.symfony.com/cli/installer | bash; \
+          sudo mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
