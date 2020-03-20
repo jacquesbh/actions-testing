@@ -45,3 +45,7 @@ jobs:
 
     - name: Current PHP?
       run: php -v && php -i
+
+    - name: MySQL version
+      run: mysql --version
+
