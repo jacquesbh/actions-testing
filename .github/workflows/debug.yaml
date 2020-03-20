@@ -35,4 +35,11 @@ jobs:
     - name: Install Symfony binary
       run: |
           curl -sS https://get.symfony.com/cli/installer | bash; \
-          sudo mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony
+          sudo mv /home/runner/.symfony/bin/symfony /usr/local/bin/symfony;
+
+    - name: Symfony binary version
+      run: symfony version
+
+    - name: List local PHP versions
+      run: symfony local:php:list
+
