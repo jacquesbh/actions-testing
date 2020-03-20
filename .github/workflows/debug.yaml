@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    #- uses: actions/checkout@v2
+    - uses: actions/checkout@v2
 
     - name: Debug environment variables
       run: env
@@ -18,7 +18,4 @@ jobs:
       run: id
 
     - name: list all binaries
-      run: |
-          for p in ${PATH//:/ }; \
-              do find $p -type f -executable; \
-          done;
+      run: bash list-all-binaries.sh
