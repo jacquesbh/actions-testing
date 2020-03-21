@@ -58,12 +58,6 @@ jobs:
     - name: Docker info
       run: docker info
 
-    - name: Install tree
-      run: sudo apt-get install -y tree
-
-    - name: Tree /var/lib/docker
-      run: sudo tree /var/lib/docker
-
     - name: Disk Usage of /var/lib/docker
       run: sudo du -h /var/lib/docker
 
