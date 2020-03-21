@@ -1,0 +1,30 @@
+name: Docker
+
+on:
+  push:
+    paths:
+      - Dockerfile
+      - .github/workflows/docker.yaml
+  pull_request:
+    paths:
+      - Dockerfile
+      - .github/workflows/docker.yaml
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    - name: Authenticate to Github Docker Packages
+      run:  echo ${{ secrets.GITHUB_TOKEN }} | docker login docker.pkg.github.com -u ${GITHUB_ACTOR} --password-stdin
+
+    - name: Build image
+      run: docker build -t docker.pkg.github.com/jacquesbh/actions-testing/debian:latest .
+
+    - name: List images
+      run: docker images
+
+    - name: Publish image
+      run: docker push docker.pkg.github.com/jacquesbh/actions-testing/debian:latest
