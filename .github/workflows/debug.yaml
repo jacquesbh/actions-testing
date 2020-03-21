@@ -55,3 +55,6 @@ jobs:
     - name: MySQL version
       run: mysql --version
 
+    - name: Docker info
+      run: docker info
+
