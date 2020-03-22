@@ -1,0 +1,51 @@
+name: Sylius
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        php: [7.3]
+        mariadb_tag: [10.4, latest]
+        sylius: [1.6, 1.7]
+
+    steps:
+
+      - name: Change PHP to PHP ${{ matrix.php }}
+        run: sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
+
+      - name: PHP version
+        run: php -b
+
+      - name: MariaDB version
+        run: docker exec ${{ job.services.mariadb.id }} mysql --version
+
+      - name: Get Sylius
+        run: composer create-project sylius/sylius-standard sylius ${{ matrix.sylius }}
+
+      - name: Setup yarn
+        working-directory: ./sylius
+        run: yarn install
+
+      - name: Build yarn
+        working-directory: ./sylius
+        run: yarn build
+
+      - name: Install Sylius
+        working-directory: ./sylius
+        run: php bin/console sylius:install -n
+
+    services:
+
+      mariadb:
+        image: mariadb:${{ matrix.mariadb_tag }}
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
+          MYSQL_DATABASE: sylius_dev
