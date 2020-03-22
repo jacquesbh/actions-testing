@@ -19,3 +19,5 @@ jobs:
     - name: PHP version
       run: php -v
 
+    - name: PHP.ini
+      run: php -i
