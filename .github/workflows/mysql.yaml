@@ -1,0 +1,30 @@
+name: MySQL
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        mariadb_tag: [10.1, 10.2, 10.3, 10.4, latest]
+
+    steps:
+
+      - name: MySQL version
+        run: mysql --version
+
+      - name: MariaDB version
+        run: docker exec ${{ job.services.mariadb.id }} mysql --version
+
+    services:
+
+      mariadb:
+        image: mariadb:${{ matrix.mariadb_tag }}
+        ports:
+          - 3306:3306
+        env:
+          MYSQL_ALLOW_EMPTY_PASSWORD: true
