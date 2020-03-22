@@ -20,6 +20,11 @@ jobs:
       - name: Change PHP to PHP ${{ matrix.php }}
         run: sudo update-alternatives --set php /usr/bin/php${{ matrix.php }}
 
+      - name: Setup timezone
+        run: |
+          echo "date.timezone=UTC" >> /tmp/timezone.ini; \
+          sudo mv /tmp/timezone.ini /etc/php/${{ matrix.php }}/cli/conf.d/timezone.ini
+
       - name: PHP version
         run: php -v
 
