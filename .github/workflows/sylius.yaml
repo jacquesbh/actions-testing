@@ -56,6 +56,10 @@ jobs:
         working-directory: ./sylius
         run: php bin/console sylius:install -n
 
+      - name: PHPunit
+        working-directory: ./sylius
+        run: ./vendor/bin/phpunit
+
     services:
 
       mariadb:
