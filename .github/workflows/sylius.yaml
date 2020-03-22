@@ -9,6 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
         php: [7.3]
         mariadb_tag: [10.4, latest]
@@ -25,8 +26,18 @@ jobs:
       - name: MariaDB version
         run: docker exec ${{ job.services.mariadb.id }} mysql --version
 
+      - uses: actions/cache@v1
+        with:
+          path: /home/runner/.composer/cache
+          key: composer-php:${{ matrix.php }}-sylius:${{ matrix.sylius }}-mariadb:${{ matrix.mariadb_tag }}
+
       - name: Get Sylius
         run: composer create-project sylius/sylius-standard sylius ${{ matrix.sylius }}
+
+      - uses: actions/cache@v1
+        with:
+          path: /home/runner/sylius/node_modules
+          key: node_modules-sylius:${{ matrix.sylius }}
 
       - name: Setup yarn
         working-directory: ./sylius
