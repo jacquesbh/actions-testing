@@ -54,8 +54,8 @@ jobs:
 
     - name: What about phpize and php-config?
       run: |
-        which phpize
-        which php-config
+        which phpize && ls -al `which phpize`
+        which php-config && ls -al `which php-config`
 
     - name: MySQL version
       run: mysql --version
