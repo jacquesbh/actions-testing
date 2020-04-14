@@ -52,6 +52,11 @@ jobs:
     - name: Use PHP 7.3
       run: sudo update-alternatives --set php /usr/bin/php7.3 && php -v
 
+    - name: What about phpize and php-config?
+      run: |
+        which phpize
+        which php-config
+
     - name: MySQL version
       run: mysql --version
 
