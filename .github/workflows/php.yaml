@@ -19,5 +19,14 @@ jobs:
     - name: PHP version
       run: php -v
 
+    - name: Install symfony CLI
+      run: |
+        wget https://get.symfony.com/cli/installer -O installer
+        chmod +x installer
+        sudo ./installer --install-dir=/usr/local/bin
+        rm -f installer
+
+    - run: symfony local:php:list
+
     - name: PHP.ini
       run: php -i
