@@ -22,9 +22,9 @@ jobs:
     - name: Install symfony CLI
       run: |
         curl https://get.symfony.com/cli/installer | bash
-        echo "::add-path::/home/runner/.symfony/bin"
+        echo "::add-path::${HOME}/.symfony/bin"
 
-    - run: symfony local:php:list
+    - run: symfony local:php:list -vvv
 
     - name: PHP.ini
       run: php -i
