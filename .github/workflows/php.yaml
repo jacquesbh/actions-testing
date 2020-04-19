@@ -21,10 +21,8 @@ jobs:
 
     - name: Install symfony CLI
       run: |
-        wget https://get.symfony.com/cli/installer -O installer
-        chmod +x installer
-        sudo ./installer --install-dir=/usr/local/bin
-        rm -f installer
+        curl https://get.symfony.com/cli/installer | bash
+        echo "::add-path::/home/runner/.symfony/bin"
 
     - run: symfony local:php:list
 

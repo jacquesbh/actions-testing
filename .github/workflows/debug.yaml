@@ -8,9 +8,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
-    env:
-      PATH: /home/runner/bin_test_dir:${PATH}
-
     steps:
     - uses: actions/checkout@v2
 
