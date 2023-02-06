@@ -1,13 +1,27 @@
 name: Release
 
 on:
-  release:
-    types: [created, edited, published]
+    release:
+        types: [ released, prereleased, edited ]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
+    build:
+        runs-on: ubuntu-latest
 
-    steps:
-    - name: Debug environment variables
-      run: env
+        steps:
+            -   name: machine echo env
+                env: { CONTENT: "${{ toJson(env) }}" }
+                run: "echo $CONTENT"
+            -   name: machine echo secrets
+                env: { CONTENT: "${{ toJson(secrets) }}" }
+                run: "echo $CONTENT"
+            -   name: machine echo github
+                env: { CONTENT: "${{ toJson(github) }}" }
+                run: "echo $CONTENT"
+            -   name: machine echo runner
+                env: { CONTENT: "${{ toJson(runner) }}" }
+                run: "echo $CONTENT"
+            -   name: machine echo job
+                env: { CONTENT: "${{ toJson(job) }}" }
+                run: "echo $CONTENT"
+
